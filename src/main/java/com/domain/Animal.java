@@ -1,14 +1,13 @@
 package com.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by K on 2017/12/3.
  */
 @Entity
+@NamedQuery(name = "Animal.findAnimalNamedQuery",query = "select a from Animal a where a.name=:name and a.type =:type")
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +16,26 @@ public class Animal {
     private String type;
 
     private Integer age;
+
+    private String name;
+
+    private Date birthday;
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;

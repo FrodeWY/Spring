@@ -27,7 +27,7 @@ import java.util.Properties;
  */
 @Configuration
 @ComponentScan(basePackages = "com",excludeFilters = {@ComponentScan.Filter(type=FilterType.ANNOTATION,value = EnableWebMvc.class)})
-@EnableJpaRepositories(basePackages = "com.repository")
+@EnableJpaRepositories(basePackages = "com.repository",repositoryImplementationPostfix = "Impl")//可以指定实现类与接口关联的后缀，默认Impl，可以改别的
 @EnableTransactionManagement
 public class RootConfig {
 
@@ -36,7 +36,8 @@ public class RootConfig {
         BasicDataSource basicDataSource=new BasicDataSource();
         basicDataSource.setUsername("root");
         basicDataSource.setPassword("123456");
-        basicDataSource.setUrl("jdbc:mysql://localhost:3306/wangyang01?useUnicode=true&characterEncoding=utf8&useSSL=true");
+//        basicDataSource.setUrl("jdbc:mysql://localhost:3306/wangyang01?useUnicode=true&characterEncoding=utf8&useSSL=true");
+        basicDataSource.setUrl("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=true");
         basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
         return basicDataSource;
     }
