@@ -26,9 +26,6 @@ public class AnimalService {
     }
     @Transactional
     public Page<Animal>DynamicFindAnimal(final String name, final Integer age, final String type, final Date  startTime, final Date endTime, final Pageable pageable){
-        Calendar calendar=Calendar.getInstance();
-        calendar.set(1993,10,10);
-       final Date startTime2=calendar.getTime();
         Page animalPage = animalRepository.findAll(new Specification<Animal>() {
             @Override
             public Predicate toPredicate(Root<Animal> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
@@ -44,7 +41,7 @@ public class AnimalService {
                     expressions.add(cb.equal(root.<String>get("type"),type));
                 }
                 if(startTime!=null){
-                    expressions.add(cb.greaterThanOrEqualTo(root.<Date>get("birthday"),startTime2));
+                    expressions.add(cb.greaterThanOrEqualTo(root.<Date>get("birthday"),startTime));
                 }
                 if(endTime!=null){
                     expressions.add(cb.lessThanOrEqualTo(root.<Date>get("birthday"),endTime));

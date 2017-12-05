@@ -19,7 +19,7 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 /**
  * Created by K on 2017/12/3.
  */
-@EnableWebMvc
+//@EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = "com")
 public class WebConfig extends WebMvcConfigurerAdapter{
