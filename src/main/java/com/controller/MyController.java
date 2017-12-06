@@ -1,6 +1,12 @@
 package com.controller;
 
 import com.domain.Animal;
+import com.mongoRepository.MongoOperationTest;
+import com.mongoRepository.OrderRepository;
+import com.mongo_domain.Item;
+import com.mongo_domain.Order;
+import com.redis_domain.Product;
+import com.redis_util.RedisUtil;
 import com.repository.AnimalRepository;
 import com.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +15,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by K on 2017/12/3.
@@ -25,10 +30,17 @@ import java.util.List;
 public class MyController {
     private AnimalRepository animalRepository;
     private AnimalService animalService;
+    private MongoOperationTest mongoOperations;
+    private OrderRepository  orderRepository;
+    private RedisUtil redisUtil;
 
-    public MyController(AnimalRepository animalRepository, AnimalService animalService) {
+    public MyController(AnimalRepository animalRepository, AnimalService animalService,
+                        MongoOperationTest mongoOperations, OrderRepository orderRepository, RedisUtil redisUtil) {
         this.animalRepository = animalRepository;
         this.animalService = animalService;
+        this.mongoOperations = mongoOperations;
+        this.orderRepository = orderRepository;
+        this.redisUtil = redisUtil;
     }
 
     @RequestMapping("/hello")
@@ -58,6 +70,51 @@ public class MyController {
         return "hello";
     }
 
+    @RequestMapping("mongo")
+    public String toMongo(){
+        LinkedHashSet linkedHashSet=new LinkedHashSet();
 
+        Item item=new Item(1L,"s",11.16,10);
+        Item item2=new Item(2L,"a",12.16,12);
+        Order order=new Order("8","nan","toy");
+        linkedHashSet.add(item);
+        linkedHashSet.add(item2);
+        order.setItems(linkedHashSet);
+//        mongoOperations.saveOrder(order);
+        Order save = orderRepository.save(order);
+        List<Order> orderList = orderRepository.findByType("toy");
+        List<Order> orders = orderRepository.findAll(new Sort(Sort.Direction.ASC, "id"));
+        Long order1 = mongoOperations.getCount("order");
+        Order orderById =orderRepository.findOneById("2");
+        List<Order> byType = orderRepository.findOrderByType("web");
+        return "mongo";
+    }
+
+    @RequestMapping("/redis")
+    public String redis(){
+        Product product=new Product();
+        product.setSku("pro1");
+        product.setName("车");
+        product.setPrice(1234.122f);
+        Product product1 = redisUtil.saveValue(product);
+        Product product2=new Product();
+        product2.setSku("pro2");
+        Boolean deleteValue = redisUtil.deleteValue(product2);
+
+        List<Product> cars = redisUtil.saveListProduct("car", (Product[]) Arrays.asList(product, product2).toArray());
+        Product popListProduct = redisUtil.popListProduct("car");
+
+        Product product3=new Product();
+        product3.setSku("pro3");
+        Product product4=new Product();
+        product4.setSku("pro4");
+        Set<Product> car1 = redisUtil.saveSetProduct("car1", (Product[]) Arrays.asList(product1, product2, product3).toArray());
+        Set<Product> car2 = redisUtil.saveSetProduct("car2", (Product[]) Arrays.asList(product1, product2, product3, product4).toArray());
+        Set<Product> set = redisUtil.productSet("car1", "car2");
+        Long removeSet = redisUtil.removeSet("car1", product3);
+
+        redisUtil.saveBoundListOperations("car4", (Product[]) Arrays.asList(product1,product3,product4).toArray());
+        return "hello";
+    }
 
 }

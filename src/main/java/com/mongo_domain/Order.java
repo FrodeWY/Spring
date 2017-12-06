@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 
@@ -62,5 +64,11 @@ public class Order {
         this.customer = customer;
         this.type = type;
         this.items = items;
+    }
+
+    public Order(String id, String customer, String type) {
+        this.id = id;
+        this.customer = customer;
+        this.type = type;
     }
 }

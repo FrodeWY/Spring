@@ -115,7 +115,18 @@
       <artifactId>spring-data-mongodb</artifactId>
       <version>1.10.4.RELEASE</version>
     </dependency>
-
+<!--redis-->
+    <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-redis</artifactId>
+      <version>1.8.4.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>2.9.0</version>
+    </dependency>
 
 
     <!-- Servlet -->

@@ -17,7 +17,7 @@ import java.util.Arrays;
  * Created by mac on 2017/12/5.
  */
 @Configuration
-@EnableMongoRepositories(basePackages = "com.mongo_domain")
+@EnableMongoRepositories(basePackages = "com.mongoRepository")
 @PropertySource("classpath:app.properties")
 public class MongoConfig  extends AbstractMongoConfiguration{
     @Autowired

@@ -7,6 +7,7 @@ import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +38,13 @@ public class MongoTest {
 
         linkedHashSet.add(item);
         linkedHashSet.add(item2);
-        Order order=new Order("1","lili","toy",linkedHashSet);
+        Order order=new Order("6","hihi","toy",linkedHashSet);
         mongoOperations.saveOrder(order);
 //        Order order1 = mongoOperations.findOrderById("1");
         Long order1 = mongoOperations.getCount("order");
         List<Order> lili = mongoOperations.query("lili");
-        mongoOperations.delete("1");
+//        mongoOperations.delete("1");
+//        Order orderById = mongoOperations.findOrderById("5a2748c4dc12685fe54d77b8");
+//        Assert.assertNotNull(orderById);
     }
 }

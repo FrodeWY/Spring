@@ -21,7 +21,7 @@ public class MongoOperationTest {
         mongo.save(order,"order");
     }
     public Long getCount(String field){
-        long count = mongo.getCollection("order").count();
+        long count = mongo.getCollection(field).count();
         return count;
     }
     public Order findOrderById(String id){
@@ -33,6 +33,6 @@ public class MongoOperationTest {
         return orderList;
     }
     public void delete(String id){
-        mongo.remove(Query.query(Criteria.where("id").is(id)), Order.class);
+        mongo.remove(Query.query(Criteria.where("id").is(id).and("type").is("toy")), Order.class);
     }
 }
