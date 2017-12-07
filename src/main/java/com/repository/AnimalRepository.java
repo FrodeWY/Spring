@@ -1,6 +1,7 @@
 package com.repository;
 
 import com.domain.Animal;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -20,6 +21,7 @@ public interface AnimalRepository extends JpaRepository<Animal,Long>,AnimalExten
     List<Animal> findDistinctAnimalByNameStartingWith(String name);
     int countByName(String name);
     List<Animal>findByNameStartingWithOrderByAgeAscNameDesc(String name);
+
     @Query("select a from Animal a where name like '%na%'")
     List<Animal>findAnimalLikeNa();
 

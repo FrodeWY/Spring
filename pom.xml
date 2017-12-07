@@ -151,7 +151,7 @@
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
-      <version>2.2</version>
+      <version>1.2</version>
     </dependency>
 
     <dependency>
@@ -159,7 +159,33 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
+<!--Ehcache-->
+    <!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache -->
+    <!--<dependency>-->
+      <!--<groupId>net.sf.ehcache</groupId>-->
+      <!--<artifactId>ehcache</artifactId>-->
+      <!--<version>2.10.4</version>-->
+    <!--</dependency>-->
+    <!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache-jcache -->
+   <!-- <dependency>
+      <groupId>net.sf.ehcache</groupId>
+      <artifactId>ehcache-jcache</artifactId>
+      <version>1.5.0-0.5</version>
+    </dependency>-->
 
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-ehcache -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-ehcache</artifactId>
+      <version>5.2.10.Final</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/javax.cache/cache-api -->
+    <dependency>
+      <groupId>javax.cache</groupId>
+      <artifactId>cache-api</artifactId>
+      <version>1.0.0-PFD</version>
+    </dependency>
 
     <!-- Test -->
     <dependency>

@@ -2,6 +2,8 @@ package com.service;
 
 import com.domain.Animal;
 import com.repository.AnimalRepository;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -53,4 +55,16 @@ public class AnimalService {
         },pageable);
         return animalPage;
     }
+
+    @Cacheable(value = "animal",key = "#animal.id")
+    public Animal findAnimal(Animal animal){
+        Animal one = animalRepository.findOne(animal.getId());
+        return one;
+    }
+    @CachePut(value = "animal",key = "#animal.id")
+    public Animal saveAnimal(Animal animal){
+        Animal save = animalRepository.save(animal);
+        return save;
+    }
 }
+

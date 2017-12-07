@@ -1,6 +1,7 @@
 package com.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +9,8 @@ import java.util.Date;
  */
 @Entity
 @NamedQuery(name = "Animal.findAnimalNamedQuery",query = "select a from Animal a where a.name=:name and a.type =:type")
-public class Animal {
+public class Animal implements Serializable{
+    private static final Long serialVersionUID=1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

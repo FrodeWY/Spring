@@ -28,6 +28,7 @@ public class RedisConfig {
         jedisPoolConfig.setMaxWaitMillis(10000);
         jedisPoolConfig.setMaxTotal(100);
         jedisConnectionFactory.setPoolConfig(jedisPoolConfig);
+        jedisConnectionFactory.afterPropertiesSet();
         return jedisConnectionFactory;
     }
     @Bean
@@ -35,8 +36,9 @@ public class RedisConfig {
         RedisTemplate<String,Product> redisTemplate=new RedisTemplate<String, Product>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         /*key 使用string类型的序列化器，value使用jackson2的序列化器，可选*/
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<Product>(Product.class));
+       /* redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<Product>(Product.class));*/
+        redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
     /*如果所使用的key，value都是字符串可以使用StringRedisTemplate*/
