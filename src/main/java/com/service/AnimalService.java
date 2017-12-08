@@ -2,6 +2,7 @@ package com.service;
 
 import com.domain.Animal;
 import com.repository.AnimalRepository;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -65,6 +66,22 @@ public class AnimalService {
     public Animal saveAnimal(Animal animal){
         Animal save = animalRepository.save(animal);
         return save;
+    }
+    /*unless 满足条件的数据不会放到缓存中，但依旧会从缓存中找*/
+    @Cacheable(value = "animal",unless ="#result.name.contains('nocache')" )
+    public Animal findOneUnless(Long id){
+        Animal animal = animalRepository.findOne(id);
+        return animal;
+    }
+    /*condition 不满足条件的不会启动缓存功能，即不会从缓存查，也不会添加到缓存中*/
+    @Cacheable(value = "animal",condition = "#id>=5",unless = "#result.name.contentEquals('lisa2')")
+    public Animal findOneCondition(Long id){
+        Animal animal = animalRepository.findOne(id);
+        return animal;
+    }
+    @CacheEvict(value = "animal")
+    public void remove(Long id){
+        animalRepository.delete(id);
     }
 }
 

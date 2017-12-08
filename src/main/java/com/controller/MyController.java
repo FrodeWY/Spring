@@ -84,6 +84,22 @@ public class MyController {
         Animal animal1 = animalService.saveAnimal(animal);
         return animal1;
     }
+    @RequestMapping("/unlessFindOne")
+    public @ResponseBody Animal findOneUnless(Long id){
+        Animal oneUnless = animalService.findOneUnless(id);
+        return oneUnless;
+    }
+    @RequestMapping("/unlessAndConditionFindOne")
+    public @ResponseBody Animal unlessAndConditionFindOne(Long id){
+        Animal oneCondition = animalService.findOneCondition(id);
+        return oneCondition;
+    }
+
+    @RequestMapping("/removeAnimal")
+    public @ResponseBody void removeAnimal(Long id){
+        animalService.remove(id);
+    }
+
     @RequestMapping("mongo")
     public String toMongo(){
         LinkedHashSet linkedHashSet=new LinkedHashSet();
@@ -126,7 +142,6 @@ public class MyController {
         Set<Product> car2 = redisUtil.saveSetProduct("car2", (Product[]) Arrays.asList(product1, product2, product3, product4).toArray());
         Set<Product> set = redisUtil.productSet("car1", "car2");
         Long removeSet = redisUtil.removeSet("car1", product3);
-
         redisUtil.saveBoundListOperations("car4", (Product[]) Arrays.asList(product1,product3,product4).toArray());
         return "hello";
     }
