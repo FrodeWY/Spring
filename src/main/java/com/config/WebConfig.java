@@ -6,6 +6,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -58,5 +61,17 @@ public class WebConfig extends WebMvcConfigurerAdapter{
         PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslationPostProcessor=new PersistenceExceptionTranslationPostProcessor();
         return persistenceExceptionTranslationPostProcessor;
     }
+    @Bean
+    public RestTemplate restTemplate(ClientHttpRequestFactory clientHttpRequestFactory){
+        RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
 
+        return restTemplate;
+    }
+    @Bean
+    public ClientHttpRequestFactory clientHttpRequestFactory(){
+        SimpleClientHttpRequestFactory factory=new SimpleClientHttpRequestFactory();
+        factory.setConnectTimeout(15000);//ms
+        factory.setReadTimeout(5000);
+        return factory;
+    }
 }
