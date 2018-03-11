@@ -9,6 +9,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 
@@ -31,8 +33,27 @@ public class RedisConfig {
         jedisConnectionFactory.afterPropertiesSet();
         return jedisConnectionFactory;
     }
+
+    @Bean
+    public JedisPool jedisPool(){
+        String HOST="127.0.0.1";
+        int PORT=6379;
+        String AUTH="wangyang";
+        Integer TIME_OUT=2000;
+        JedisPoolConfig jedisPoolConfig=new JedisPoolConfig();
+        jedisPoolConfig.setBlockWhenExhausted(false);
+        jedisPoolConfig.setMaxIdle(100);
+        jedisPoolConfig.setMaxTotal(200);
+        jedisPoolConfig.setMaxWaitMillis(10000);
+        jedisPoolConfig.setTestOnBorrow(true);
+        jedisPoolConfig.setTimeBetweenEvictionRunsMillis(1000000);
+        jedisPoolConfig.setMinEvictableIdleTimeMillis(1200000);
+        JedisPool pool=new JedisPool(jedisPoolConfig,HOST,PORT,TIME_OUT,AUTH );
+        return pool;
+    }
     @Bean
     public RedisTemplate<String,Product> redisTemplate(RedisConnectionFactory redisConnectionFactory){
+
         RedisTemplate<String,Product> redisTemplate=new RedisTemplate<String, Product>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         /*key 使用string类型的序列化器，value使用jackson2的序列化器，可选*/

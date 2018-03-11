@@ -62,7 +62,7 @@ public class AnimalService {
         Animal one = animalRepository.findOne(animal.getId());
         return one;
     }
-    @CachePut(value = "animal",key = "#animal.id")
+    @CachePut(value = "animal",key = "#result.id")
     public Animal saveAnimal(Animal animal){
         Animal save = animalRepository.save(animal);
         return save;
@@ -79,7 +79,7 @@ public class AnimalService {
         Animal animal = animalRepository.findOne(id);
         return animal;
     }
-    @CacheEvict(value = "animal")
+    @CacheEvict(value = "animal" ,key = "#id")
     public void remove(Long id){
         animalRepository.delete(id);
     }
