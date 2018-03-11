@@ -79,6 +79,11 @@ public class AnimalService {
         Animal animal = animalRepository.findOne(id);
         return animal;
     }
+    @Cacheable(value = "animal",key = "#id")
+    public Animal findOne(Long id){
+        Animal animal = animalRepository.findOne(id);
+        return animal;
+    }
     @CacheEvict(value = "animal" ,key = "#id")
     public void remove(Long id){
         animalRepository.delete(id);

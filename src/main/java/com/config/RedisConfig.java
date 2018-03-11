@@ -38,7 +38,7 @@ public class RedisConfig {
     public JedisPool jedisPool(){
         String HOST="127.0.0.1";
         int PORT=6379;
-        String AUTH="wangyang";
+        String AUTH="123456";
         Integer TIME_OUT=2000;
         JedisPoolConfig jedisPoolConfig=new JedisPoolConfig();
         jedisPoolConfig.setBlockWhenExhausted(false);
