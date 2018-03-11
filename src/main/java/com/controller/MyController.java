@@ -9,7 +9,6 @@ import com.redis_domain.Product;
 import com.redis_util.RedisUtil;
 import com.repository.AnimalRepository;
 import com.service.AnimalService;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Bean;

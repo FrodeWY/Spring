@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.test</groupId>
   <artifactId>jpa_test</artifactId>
@@ -38,42 +38,52 @@
       <artifactId>jackson-dataformat-xml</artifactId>
       <version>2.9.4</version>
     </dependency>
-    <!--对xml和json格式的支持-->
 
-    <!--swagger-ui-->
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger2</artifactId>
-      <version>2.6.1</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml</groupId>
-      <artifactId>classmate</artifactId>
-      <version>1.3.3</version>
-    </dependency>
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger-ui</artifactId>
-      <version>2.6.1</version>
-    </dependency>
+      <!--swagger-->
+      <dependency>
+          <groupId>io.springfox</groupId>
+          <artifactId>springfox-swagger2</artifactId>
+          <version>2.7.0</version>
+      </dependency>
+      <dependency>
+          <groupId>io.springfox</groupId>
+          <artifactId>springfox-swagger-ui</artifactId>
+          <version>2.7.0</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
+      <dependency>
+          <groupId>io.swagger</groupId>
+          <artifactId>swagger-annotations</artifactId>
+          <version>1.5.13</version>
+      </dependency>
 
-
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-core</artifactId>
+          <version>2.8.10</version>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>2.8.10</version>
+      </dependency>
+      <!--swagger-->
     <!-- Spring -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-tx</artifactId>
-      <version>4.3.11.RELEASE</version>
+      <version>4.3.12.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
-      <version>4.3.11.RELEASE</version>
+      <version>4.3.12.RELEASE</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
-      <version>4.3.11.RELEASE</version>
+      <version>4.3.12.RELEASE</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
@@ -85,12 +95,13 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>4.3.11.RELEASE</version>
+      <version>4.3.12.RELEASE</version>
     </dependency>
+
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>4.3.11.RELEASE</version>
+      <version>4.3.12.RELEASE</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
     <dependency>
@@ -139,14 +150,14 @@
       <version>20180130</version>
     </dependency>
 
-<!--MongoDB-->
+    <!--MongoDB-->
     <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb -->
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-mongodb</artifactId>
       <version>1.10.4.RELEASE</version>
     </dependency>
-<!--redis-->
+    <!--redis-->
     <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
     <dependency>
       <groupId>org.springframework.data</groupId>
@@ -162,16 +173,27 @@
 
     <!-- Servlet -->
     <dependency>
-    <groupId>javax.servlet.jsp</groupId>
-    <artifactId>jsp-api</artifactId>
-    <version>2.2.1-b03</version>
-    <type>jar</type>
-  </dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.2.1-b03</version>
+      <type>jar</type>
+    </dependency>
 
     <dependency>
       <groupId>org.apache.geronimo.specs</groupId>
       <artifactId>geronimo-servlet_3.0_spec</artifactId>
       <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.2.1-b03</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
     </dependency>
 
     <dependency>
@@ -179,21 +201,19 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
-
-
-<!--Ehcache-->
+    <!--Ehcache-->
     <!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache -->
     <!--<dependency>-->
-      <!--<groupId>net.sf.ehcache</groupId>-->
-      <!--<artifactId>ehcache</artifactId>-->
-      <!--<version>2.10.4</version>-->
+    <!--<groupId>net.sf.ehcache</groupId>-->
+    <!--<artifactId>ehcache</artifactId>-->
+    <!--<version>2.10.4</version>-->
     <!--</dependency>-->
     <!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache-jcache -->
-   <!-- <dependency>
-      <groupId>net.sf.ehcache</groupId>
-      <artifactId>ehcache-jcache</artifactId>
-      <version>1.5.0-0.5</version>
-    </dependency>-->
+    <!-- <dependency>
+       <groupId>net.sf.ehcache</groupId>
+       <artifactId>ehcache-jcache</artifactId>
+       <version>1.5.0-0.5</version>
+     </dependency>-->
 
     <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-ehcache -->
     <dependency>
@@ -217,18 +237,20 @@
       <scope>test</scope>
     </dependency>
 
+
+
   </dependencies>
   <build>
     <finalName>jpa_test</finalName>
-      <plugins>
-          <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-compiler-plugin</artifactId>
-              <configuration>
-                  <source>1.6</source>
-                  <target>1.6</target>
-              </configuration>
-          </plugin>
-      </plugins>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>
