@@ -1,256 +1,274 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.test</groupId>
-  <artifactId>jpa_test</artifactId>
-  <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>jpa_test Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.test</groupId>
+    <artifactId>jpa_test</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>jpa_test Maven Webapp</name>
+    <url>http://maven.apache.org</url>
 
-    <dependency>
-      <groupId>commons-dbcp</groupId>
-      <artifactId>commons-dbcp</artifactId>
-      <version>1.2.2</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring4 -->
-    <dependency>
-      <groupId>org.thymeleaf</groupId>
-      <artifactId>thymeleaf-spring4</artifactId>
-      <version>3.0.9.RELEASE</version>
-    </dependency>
+    <properties>
+        <spring.version>4.3.12.RELEASE</spring.version>
+        <jackson.version>2.8.10</jackson.version>
+        <swagger.version>2.7.0</swagger.version>
+        <hibernate.version>5.2.10.Final</hibernate.version>
+    </properties>
+    <dependencies>
 
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.2</version>
-    </dependency>
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring4 -->
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring4</artifactId>
+            <version>3.0.9.RELEASE</version>
+        </dependency>
 
-    <!--<dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.6.0</version>
-    </dependency>-->
-    <!--对xml和json格式的支持-->
-    <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-xml</artifactId>
-      <version>2.9.4</version>
-    </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.2</version>
+        </dependency>
 
-      <!--swagger-->
-      <dependency>
-          <groupId>io.springfox</groupId>
-          <artifactId>springfox-swagger2</artifactId>
-          <version>2.7.0</version>
-      </dependency>
-      <dependency>
-          <groupId>io.springfox</groupId>
-          <artifactId>springfox-swagger-ui</artifactId>
-          <version>2.7.0</version>
-      </dependency>
-      <!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
-      <dependency>
-          <groupId>io.swagger</groupId>
-          <artifactId>swagger-annotations</artifactId>
-          <version>1.5.13</version>
-      </dependency>
-
-      <dependency>
-          <groupId>com.fasterxml.jackson.core</groupId>
-          <artifactId>jackson-core</artifactId>
-          <version>2.8.10</version>
-      </dependency>
-      <dependency>
+        <!--<dependency>
           <groupId>com.fasterxml.jackson.core</groupId>
           <artifactId>jackson-databind</artifactId>
-          <version>2.8.10</version>
-      </dependency>
-      <!--swagger-->
-    <!-- Spring -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
-      <version>4.3.12.RELEASE</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>4.3.12.RELEASE</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-orm</artifactId>
-      <version>4.3.12.RELEASE</version>
-    </dependency>
+          <version>2.6.0</version>
+        </dependency>-->
+        <!--对xml和json格式的支持-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>2.9.4</version>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-jpa</artifactId>
-      <version>1.11.7.RELEASE</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <version>4.3.12.RELEASE</version>
-    </dependency>
+        <!--swagger-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.13</version>
+        </dependency>
 
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <version>4.3.12.RELEASE</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
-    <dependency>
-      <groupId>org.hibernate.javax.persistence</groupId>
-      <artifactId>hibernate-jpa-2.1-api</artifactId>
-      <version>1.0.0.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
-      <version>5.2.10.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <version>4.3.12.RELEASE</version>
-    </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <!--swagger-->
 
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.38</version>
-    </dependency>
+        <!--RabbitMQ-->
 
-    <!-- hibernate -->
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
-      <version>5.2.10.Final</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
-      <version>5.2.10.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <version>6.0.0.CR3</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.json/json -->
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20180130</version>
-    </dependency>
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+            <version>1.7.4.RELEASE</version>
+        </dependency>
+        <!--RabbitMQ-->
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-    <!--MongoDB-->
-    <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb -->
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-mongodb</artifactId>
-      <version>1.10.4.RELEASE</version>
-    </dependency>
-    <!--redis-->
-    <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-redis</artifactId>
-      <version>1.8.4.RELEASE</version>
-    </dependency>
-    <dependency>
-      <groupId>redis.clients</groupId>
-      <artifactId>jedis</artifactId>
-      <version>2.9.0</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>1.11.7.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
 
-    <!-- Servlet -->
-    <dependency>
-      <groupId>javax.servlet.jsp</groupId>
-      <artifactId>jsp-api</artifactId>
-      <version>2.2.1-b03</version>
-      <type>jar</type>
-    </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-    <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-servlet_3.0_spec</artifactId>
-      <version>1.0</version>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet.jsp</groupId>
-      <artifactId>jsp-api</artifactId>
-      <version>2.2.1-b03</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
-    </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.38</version>
+        </dependency>
 
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
-    </dependency>
-    <!--Ehcache-->
-    <!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache -->
-    <!--<dependency>-->
-    <!--<groupId>net.sf.ehcache</groupId>-->
-    <!--<artifactId>ehcache</artifactId>-->
-    <!--<version>2.10.4</version>-->
-    <!--</dependency>-->
-    <!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache-jcache -->
-    <!-- <dependency>
-       <groupId>net.sf.ehcache</groupId>
-       <artifactId>ehcache-jcache</artifactId>
-       <version>1.5.0-0.5</version>
-     </dependency>-->
+        <!-- hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.0.0.CR3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20180130</version>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-ehcache -->
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-ehcache</artifactId>
-      <version>5.2.10.Final</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/javax.cache/cache-api -->
-    <dependency>
-      <groupId>javax.cache</groupId>
-      <artifactId>cache-api</artifactId>
-      <version>1.0.0-PFD</version>
-    </dependency>
-
-    <!-- Test -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
+        <!--MongoDB-->
+        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+            <version>1.10.4.RELEASE</version>
+        </dependency>
+        <!--redis-->
+        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.8.4.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
 
 
+        <!-- Servlet -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.2.1-b03</version>
+            <type>jar</type>
+        </dependency>
 
-  </dependencies>
-  <build>
-    <finalName>jpa_test</finalName>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-servlet_3.0_spec</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.2.1-b03</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+
+        <!--Ehcache-->
+        <!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache -->
+        <!--<dependency>-->
+        <!--<groupId>net.sf.ehcache</groupId>-->
+        <!--<artifactId>ehcache</artifactId>-->
+        <!--<version>2.10.4</version>-->
+        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache-jcache -->
+        <!-- <dependency>
+           <groupId>net.sf.ehcache</groupId>
+           <artifactId>ehcache-jcache</artifactId>
+           <version>1.5.0-0.5</version>
+         </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-ehcache -->
+
+
+        <!-- https://mvnrepository.com/artifact/javax.cache/cache-api -->
+        <dependency>
+            <groupId>javax.cache</groupId>
+            <artifactId>cache-api</artifactId>
+            <version>1.0.0-PFD</version>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+
+    </dependencies>
+    <build>
+        <finalName>jpa_test</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

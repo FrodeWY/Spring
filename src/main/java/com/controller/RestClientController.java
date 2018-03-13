@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -81,5 +82,20 @@ public class RestClientController {
         HttpEntity<String> httpEntity=new HttpEntity<String>(headers);
         JSONObject jsonObject=new JSONObject(animal);
         restTemplate.put("http://localhost:8080/api/animal",animal);
+    }
+    /**在post请求后获取资源位置*/
+    @PostMapping(value = "rest_animal",consumes = "application/json;charset=UTF-8",produces = "application/json;charset=UTF-8")
+    public URI createAnimal(@RequestBody Animal animal){
+        JSONObject jsonObject=new JSONObject(animal);
+        HttpHeaders headers=new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Accept",MediaType.APPLICATION_JSON.toString());
+        HttpEntity<Animal> httpEntity=new HttpEntity<Animal>(animal,headers);
+        URI requestURL = URI.create("http://localhost:8080/api/animal");
+        ResponseEntity<Animal> animalResponseEntity = restTemplate.postForEntity(requestURL, httpEntity, Animal.class);
+        URI location = animalResponseEntity.getHeaders().getLocation();
+        URI uri = restTemplate.postForLocation("http://localhost:8080/api/animal", httpEntity);
+        System.out.println("location:"+location+" uri:"+uri);
+        return uri;
     }
 }
