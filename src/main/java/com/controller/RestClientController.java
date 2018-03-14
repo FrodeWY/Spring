@@ -47,7 +47,6 @@ public class RestClientController {
     @GetMapping(value = "rest_animals/{id}",produces = "application/json;charset=UTF-8")
     @ApiOperation(value = "通过restTemplate.getForObject()查询某个animal")
     public Animal animalList(@PathVariable Long id){
-
         /*使用可变参数传参*/
         Animal forObject = restTemplate.getForObject("http://localhost:8080/api/animal/{id}", Animal.class, id);
         Map <String,String> map=new HashMap<String, String>();

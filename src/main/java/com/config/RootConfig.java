@@ -39,6 +39,7 @@ public class RootConfig {
 //        basicDataSource.setUrl("jdbc:mysql://localhost:3306/wangyang01?useUnicode=true&characterEncoding=utf8&useSSL=true");
         basicDataSource.setUrl("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=true");
         basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+
         return basicDataSource;
     }
     @Bean

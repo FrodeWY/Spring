@@ -83,11 +83,11 @@
             <artifactId>amqp-client</artifactId>
             <version>5.2.0</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit</artifactId>
             <version>1.7.4.RELEASE</version>
-        </dependency>
+        </dependency>-->
         <!--RabbitMQ-->
         <!-- Spring -->
         <dependency>
