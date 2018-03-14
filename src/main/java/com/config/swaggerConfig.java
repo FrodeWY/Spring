@@ -1,6 +1,7 @@
 package com.config;
 
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -33,6 +34,7 @@ public class swaggerConfig {
                 .select()
                 // 指定controller存放的目录路径
                 .apis(RequestHandlerSelectors.basePackage("com.controller"))
+//                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build();
     }
