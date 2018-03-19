@@ -23,6 +23,8 @@ public class RabbitMQConfig2 {
         connectionFactory.setUsername("root");
         connectionFactory.setVirtualHost("/root");
         connectionFactory.setPort(AMQP.PROTOCOL.PORT);
+        connectionFactory.setAutomaticRecoveryEnabled(true);//启用自动连接恢复
+        connectionFactory.setNetworkRecoveryInterval(5000);//如果恢复因异常失败(如. RabbitMQ节点仍然不可达),它会在固定时间间隔后进行重试(默认是5秒).
         return connectionFactory;
     }
 }
