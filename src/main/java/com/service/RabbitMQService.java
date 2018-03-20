@@ -4,6 +4,7 @@ import com.domain.Animal;
 import com.rabbitmq.client.*;
 import com.rabbitmq.client.impl.AMQBasicProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -57,7 +58,6 @@ public class RabbitMQService {
     public void close(){
 
     }
-
     public void receive() throws IOException, TimeoutException {
         Connection connection = connectionFactory.newConnection();
         final Channel channel = connection.createChannel();
