@@ -3,10 +3,7 @@ package com.config;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -19,7 +16,7 @@ public class WebContextListener implements ServletContextListener{
     /*RabbitMQ建议客户端线程之间不要共用Channel，至少要保证共用Channel的线程发送消息必须是串行的，但是建议尽量共用Connection*/
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(RabbitMQConfig2.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(RabbitMQConfig.class);
         ConnectionFactory connectionFactory = (ConnectionFactory)context.getBean("connectionFactory");
         Connection connection = null;
         Channel channel=null;

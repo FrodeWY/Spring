@@ -53,7 +53,6 @@ public class RedisConfig {
     }
     @Bean
     public RedisTemplate<String,Product> redisTemplate(RedisConnectionFactory redisConnectionFactory){
-
         RedisTemplate<String,Product> redisTemplate=new RedisTemplate<String, Product>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         /*key 使用string类型的序列化器，value使用jackson2的序列化器，可选*/

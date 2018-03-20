@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 @Configuration
-public class RabbitMQConfig2 {
+public class RabbitMQConfig {
 
 
 
