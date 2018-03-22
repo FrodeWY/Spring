@@ -8,7 +8,7 @@ import java.util.List;
 public class ListRemoveTest {
     public static void main(String[] args) {
         List<String> list = new ArrayList<>(Arrays.asList("a", "b", "c", "d", "d", "r"));
-//        list.stream().filter((a)->)
+
         /*会报java.lang.UnsupportedOperationException*/
         /*for (String e:list){
            if(e.equals("d")){
@@ -42,5 +42,7 @@ public class ListRemoveTest {
         /*lambda*/
         list.removeIf(next -> next.contains("d"));
         System.out.println(list);
+
+
     }
 }

@@ -20,7 +20,21 @@ public class CollectionSort {
 //        Collections.sort(users, Comparator.comparing(Users::getAge).reversed().thenComparing(Users::getName));
 //        users.forEach((e)-> System.out.println(e.getName()+" "+e.getAge()));
 
-
+        /*Map<String ,Long> map=new HashMap<>();
+        Set set = map.entrySet();
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()){
+            Map.Entry entry= (Map.Entry) iterator.next();
+            String key= (String) entry.getKey();
+            Long value= (Long) entry.getValue();
+            System.out.println("key:"+key+" value:"+value);
+        }*/
+//      在使用增强for循环时，不能对元素进行赋值；
+        int[]aa={1,2,5,2};
+        for (int a :aa){
+            a=2; //不能改变数组的值
+        }
+        System.out.println(aa[2]);
     }
     public static List<Users> initList(){
 
