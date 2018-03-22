@@ -13,6 +13,14 @@
         <jackson.version>2.8.10</jackson.version>
         <swagger.version>2.7.0</swagger.version>
         <hibernate.version>5.2.10.Final</hibernate.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <logback.version>1.2.3</logback.version>
+        <log.moduleName>ssm-project</log.moduleName>
+        <log.base>logs</log.base>
+        <log.other.level>DEBUG</log.other.level>
+        <log.root.level>DEBUG</log.root.level>
+        <log.stdout.ref><![CDATA[<appender-ref ref="stdout" />]]></log.stdout.ref>
+        <log.max.size>10kb</log.max.size>
     </properties>
     <dependencies>
 
@@ -45,7 +53,38 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>2.9.4</version>
         </dependency>
-
+        <!--log-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.logback-extensions</groupId>
+            <artifactId>logback-ext-spring</artifactId>
+            <version>0.1.4</version>
+        </dependency>
+        <!--log-->
         <!--swagger-->
         <dependency>
             <groupId>io.springfox</groupId>

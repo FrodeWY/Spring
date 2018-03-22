@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebListener;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-@WebListener
+//@WebListener
 public class WebContextListener implements ServletContextListener{
     /*RabbitMQ建议客户端线程之间不要共用Channel，至少要保证共用Channel的线程发送消息必须是串行的，但是建议尽量共用Connection*/
     @Override

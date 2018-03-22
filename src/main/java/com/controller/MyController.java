@@ -9,6 +9,8 @@ import com.redis_domain.Product;
 import com.redis_util.RedisUtil;
 import com.repository.AnimalRepository;
 import com.service.AnimalService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Bean;
@@ -37,7 +39,7 @@ public class MyController {
     private MongoOperationTest mongoOperations;
     private OrderRepository  orderRepository;
     private RedisUtil redisUtil;
-
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
     public MyController(AnimalRepository animalRepository, AnimalService animalService,
                         MongoOperationTest mongoOperations, OrderRepository orderRepository, RedisUtil redisUtil) {
         this.animalRepository = animalRepository;
@@ -50,6 +52,7 @@ public class MyController {
     @RequestMapping("/hello")
     @Transactional
     public String toHello(){
+        log.debug("tohello start");
         List<Animal> all = animalRepository.findAll();
         List<Animal> byAgeBetween = animalRepository.findByAgeBetween(10, 13);
         List<Animal> animals=animalRepository.findByNameNotAndNameStartingWith("nina","n");
