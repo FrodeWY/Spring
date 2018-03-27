@@ -42,12 +42,12 @@ public class RabbitMQService {
         channel.addReturnListener(new ReturnListener() {
             @Override
             public void handleReturn(int i, String s, String s1, String routing_key, AMQP.BasicProperties basicProperties, byte[] bytes) throws IOException {
-                String message=new String (bytes,"UTF-8");
-                System.out.println("message："+message);
-                System.out.println("i:"+i);
-                System.out.println("s:"+s);
-                System.out.println("s2:"+routing_key);
-                System.out.println("properties:"+basicProperties.getContentType());
+                String message = new String(bytes, "UTF-8");
+                System.out.println("message：" + message);
+                System.out.println("i:" + i);
+                System.out.println("s:" + s);
+                System.out.println("s2:" + routing_key);
+                System.out.println("properties:" + basicProperties.getContentType());
 
             }
         });
@@ -82,8 +82,16 @@ public class RabbitMQService {
                 .expiration("600000")//设置过期时间ms
                 .build()
                 ,bytes);*/
-        channel.basicPublish("fanout_exchange","",MessageProperties.PERSISTENT_TEXT_PLAIN,bytes);//MessageProperties.PERSISTENT_TEXT_PLAIN消息持久化
+        channel.basicPublish("fanout_exchange", "", MessageProperties.PERSISTENT_TEXT_PLAIN, bytes);//MessageProperties.PERSISTENT_TEXT_PLAIN消息持久化
         /*channel.basicPublish("direct_exchange", "get_key", true, false, null, message.getBytes());*/
+        /*routingKey：路由键，#匹配0个或多个单词，*匹配一个单词，在topic exchange做消息转发用
+        mandatory：true：如果exchange根据自身类型和消息routeKey无法找到一个符合条件的queue，
+        那么会调用basic.return方法将消息返还给生产者。false：出现上述情形broker会直接将消息扔掉
+        immediate：true：如果exchange在将消息route到queue(s)时发现对应的queue上没有消费者，
+        那么这条消息不会放入队列中。当与消息routeKey关联的所有queue(一个或多个)都没有消费者时，该消息会通过basic.return方法返还给生产者。
+        BasicProperties ：需要注意的是BasicProperties.deliveryMode，0:不持久化 1：持久化 这里指的是消息的持久化，配合channel(durable=true),queue(durable)可以实现，即使服务器宕机，消息仍然保留
+        简单来说：mandatory标志告诉服务器至少将该消息route到一个队列中，否则将消息返还给生产者；immediate标志告诉服务器如果该消息关联的queue上有消费者，则马上将消息投递给它，
+        如果所有queue都没有消费者，直接把消息返还给生产者，不用将消息入队列等待消费者了。*/
         channel.basicPublish("direct_exchange", "get_key_no", true, false, MessageProperties.TEXT_PLAIN, message.getBytes());
 
 
@@ -91,6 +99,7 @@ public class RabbitMQService {
         channel.close();
         connection.close();
     }
+
     public void receive() throws IOException, TimeoutException {
         /*Consumer 线程默认是通过一个新的ExecutorService线程池来自动分配的
         newFixedThreadPool创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。*/
@@ -98,8 +107,8 @@ public class RabbitMQService {
 
         /*会尝试连接hostname1:portnumber1, 如果不能连接,则会连接hostname2:portnumber2,然后会返回数组中第一个成功连接(不会抛出IOException)上broker的连接.
         这完全等价于在factory上重复调用factory.newConnection()方法来设置host和port, 直到有一个成功返回.*/
-        Address[] addresses=new Address[]{new Address("127.0.0.1",AMQP.PROTOCOL.PORT),new Address("192.168.16.2",5984)};
-        Connection connection = connectionFactory.newConnection(es,addresses);
+        Address[] addresses = new Address[]{new Address("127.0.0.1", AMQP.PROTOCOL.PORT), new Address("192.168.16.2", 5984)};
+        Connection connection = connectionFactory.newConnection(es, addresses);
 
         final Channel channel = connection.createChannel();
 
